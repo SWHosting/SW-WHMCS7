@@ -813,7 +813,7 @@ function swhosting_TransferSync($params)
         } elseif ($status == 'FAILED') {
             return array(
                 'failed' => true,
-                'reason' => "Failed", // $response->error Reason for the transfer failure if available
+                'reason' => $response->message, // Reason for the transfer failure if available
             );
         } else {
             // No status change, return empty array
