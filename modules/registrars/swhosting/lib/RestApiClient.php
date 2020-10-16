@@ -10,7 +10,7 @@ namespace WHMCS\Module\Registrar\SWHosting;
 class RestApiClient
 {
     const TEST_API_URL = 'https://ote-api.swhosting.com/v1/';
-    const API_URL = 'https:/api.swhosting.com/v1/';
+    const API_URL = 'https://api.swhosting.com/v1/';
 
     protected $url;
     protected $token;
