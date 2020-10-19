@@ -90,6 +90,7 @@ function swhosting_RegisterDomain($params)
             'endpoint' => 'domains/'.$params['domainname'].'/register',
             'method' => 'POST',
             'data' => [
+                "debug" => $params,
                 "years" => $params['regperiod'],
                 "contactRegistrant" => [
                     "nombre" => $params["firstname"],
@@ -103,7 +104,8 @@ function swhosting_RegisterDomain($params)
                     "pais" => $params["countryname"],
                     "telefono" => $params["fullphonenumber"],
                     "fax" => "",
-                    "nif" => $params['tax_id'],
+                    "es_forma_juridica" => (isset($params['additionalfields']['Legal Form'])) ? $params['additionalfields']['Legal Form'] : 1,
+                    "nif" => (isset($params['additionalfields']['ID Form Number'])) ? $params['additionalfields']['ID Form Number'] : $params['tax_id'],
                 ],
                 "contactAdmin" => [
                     "nombre" => $params["adminfirstname"],
@@ -114,10 +116,11 @@ function swhosting_RegisterDomain($params)
                     "poblacion" => $params["admincity"],
                     "provincia" => $params["adminstate"],
                     "cpostal" => $params["adminpostcode"],
-                    "pais" => $params["admincountry"],
+                    "pais" => ($params["admincountry"] == 'ES') ? 'Spain' : $params["admincountry"],
                     "telefono" => $params["adminfullphonenumber"],
                     "fax" => "",
-                    "nif" => $params['tax_id'],
+                    "es_forma_juridica" => (isset($params['additionalfields']['Legal Form'])) ? $params['additionalfields']['Legal Form'] : 1,
+                    "nif" => (isset($params['additionalfields']['ID Form Number'])) ? $params['additionalfields']['ID Form Number'] : $params['tax_id'],
                 ],
                 "nameServers" => [
                     $params['ns1'], $params['ns2'], $params['ns3'], $params['ns4']
